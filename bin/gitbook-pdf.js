@@ -16,14 +16,15 @@ var logError = function(err) {
 
 // General options
 prog
-.version(pkg.version);
+.version(pkg.version)
+.option('-f, --format <pdf format>', 'Output format for the PDF: "5in*7.5in", "10cm*20cm", "A4", "Letter", default is A4');
 
 prog
 .command('generate [input] [output]')
 .description('Generate a PDF file from an HTML file')
 
 .action(function(input, output, options) {
-    pdf.generate(input, output)
+    pdf.generate(input, output, options)
     .then(function() {
         console.log("Done!");
     }, logError);
